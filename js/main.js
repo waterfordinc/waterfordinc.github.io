@@ -65,11 +65,13 @@
 		$('#navbar a:not([class="external"])').click(function(event){
 			var section = $(this).data('nav-section'),
 				navbar = $('#navbar');
-
+				var choice = true;
 				if ( $('[data-section="' + section + '"]').length ) {
 			    	$('html, body').animate({
 			        	scrollTop: $('[data-section="' + section + '"]').offset().top
 			    	}, 500);
+			    	choice = false;
+			    	console.log("first");
 			   }
 
 		    if ( navbar.is(':visible')) {
@@ -77,9 +79,13 @@
 		    	navbar.attr('aria-expanded', 'false');
 		    	$('.js-fh5co-nav-toggle').removeClass('active');
 		    }
-
-		    event.preventDefault();
-		    return false;
+		    if(!choice){
+		    	event.preventDefault();
+		    	return false;
+		    }else{
+		    	return true;
+		    }
+		    
 		});
 
 
